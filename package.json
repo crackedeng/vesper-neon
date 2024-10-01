@@ -1,28 +1,72 @@
 {
-  "name": "vesper",
-  "displayName": "Vesper",
-  "publisher": "raunofreiberg",
-  "description": "Peppermint and orange flavored dark theme for VSCode.",
+  "name": "vesper-neon",
+  "displayName": "vesper neon",
+  "publisher": "crackedeng",
+  "description": "forked vesper theme with neon glow",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/raunofreiberg/vesper"
+    "url": "https://github.com/crackedeng/vesper-neon"
   },
   "icon": "icon.png",
-  "version": "0.0.39",
+  "version": "0.0.1",
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.89.0"
   },
+  "main": "./out/extension.js",
   "categories": [
     "Themes"
   ],
   "contributes": {
     "themes": [
       {
-        "label": "Vesper",
+        "label": "vesper neon",
         "uiTheme": "vs-dark",
-        "path": "./themes/Vesper-dark-color-theme.json"
+        "path": "themes/vesper-neon-color-theme.json"
+      }
+    ],
+    "configuration": {
+      "vesper-neon.brightness": {
+        "type": "number",
+        "default": 1,
+        "description": "Set the brightness value for the glow effect. 0.0 is fully transparent and 1.0 is fully bright"
+      },
+      "vesper-neon.disableGlow": {
+        "type": "boolean",
+        "default": "false",
+        "description": "disable neon glow"
+      }
+    },
+    "commands": [
+      {
+        "command": "vesper-neon.enableNeon",
+        "title": "vesper neon: enable glow"
+      },
+      {
+        "command": "vesper-neon.disableNeon",
+        "title": "vesper neon: disable glow"
       }
     ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && cp -r src/css/ out/css",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.16.10",
+    "@types/vscode": "^1.93.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.2",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.3"
   }
 }

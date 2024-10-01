@@ -1,6 +1,7 @@
 {
-  "name": "Vesper",
+  "name": "vesper-neon",
   "colors": {
+
     // Editor
     "editor.background": "#101010",
     "editor.foreground": "#FFF",
@@ -21,25 +22,30 @@
     "diffEditor.removedLineBackground": "#FF808015",
     "editorInlayHint.foreground": "#A0A0A0",
     "editorInlayHint.background": "#1C1C1C",
+
     // Sidebar
     "sideBar.background": "#101010",
     "sideBarTitle.foreground": "#A0A0A0",
     "sideBarSectionHeader.foreground": "#A0A0A0",
     "sideBarSectionHeader.background": "#101010",
+
     // Activity bar
     "activityBar.background": "#101010",
     "activityBar.foreground": "#A0A0A0",
     "activityBarBadge.background": "#FFC799",
     "activityBarBadge.foreground": "#000",
+
     // Title bar
     "titleBar.activeBackground": "#101010",
     "titleBar.inactiveBackground": "#101010",
     "titleBar.activeForeground": "#7E7E7E",
     "titleBar.inactiveForeground": "#707070",
+
     // Tab
     "tab.border": "#101010",
     "tab.activeBackground": "#161616",
     "tab.inactiveBackground": "#101010",
+
     // Status bar
     "statusBar.debuggingForeground": "#FFF",
     "statusBar.debuggingBackground": "#FF7300",
@@ -47,9 +53,11 @@
     "statusBar.foreground": "#A0A0A0",
     "statusBarItem.remoteBackground": "#FFC799",
     "statusBarItem.remoteForeground": "#000",
+
     // Change explorer active item color
     "list.activeSelectionForeground": "#FFC799",
     "list.inactiveSelectionBackground": "#232323",
+
     // Global
     "badge.background": "#FFC799",
     "badge.foreground": "#000",
@@ -64,6 +72,7 @@
     "list.errorForeground": "#FF8080",
     "list.highlightForeground": "#FFC799",
     "selection.background": "#666",
+
     // Brackets
     "editorBracketHighlight.foreground1": "#A0A0A0",
     "editorBracketHighlight.foreground2": "#A0A0A0",
@@ -72,18 +81,23 @@
     "editorBracketHighlight.foreground5": "#A0A0A0",
     "editorBracketHighlight.foreground6": "#A0A0A0",
     "editorBracketHighlight.unexpectedBracket.foreground": "#FF8080",
-    // Links
+
+    // Link
     "textLink.foreground": "#FFC799",
     "textLink.activeForeground": "#FFCFA8",
+
     // Tooltips
     "editorHoverWidget.background": "#161616",
     "editorHoverWidget.border": "#282828",
+
     // Scrollbar
     "scrollbarSlider.background": "#34343480",
     "scrollbarSlider.hoverBackground": "#343434",
+
     // Settings
     "settings.modifiedItemIndicator": "#FFC799"
   },
+
   "tokenColors": [
     {
       "name": "Comment",
@@ -203,7 +217,7 @@
         "meta.group.braces.curly constant.other.object.key.js string.unquoted.label.js"
       ],
       "settings": {
-        "foreground": "#99FFE4"
+        "foreground": "#a0a0a0"
       }
     },
     {
