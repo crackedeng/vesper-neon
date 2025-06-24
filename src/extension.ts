@@ -9,7 +9,6 @@ interface IConfig {
 
 export function activate(context: vscode.ExtensionContext) {
   vscode.window.showInformationMessage("activating vesper neon");
-
   const config = parseVesperNeonConfig();
   const disposable = vscode.commands.registerCommand(
     "vesper-neon.enableNeon",
@@ -63,11 +62,9 @@ function isVSCodeBelowVersion(version: string) {
 
   return false;
 }
-console.info("glow is not enabled, enabling it now");
 
 function parseVesperNeonConfig(): IConfig {
   const config = vscode.workspace.getConfiguration("vesper-neon");
-  console.log("brightness is this val", config.brightness);
   let isGlowDisabled: boolean =
     config && typeof config.disableGlow === "boolean"
       ? config.disableGlow
@@ -89,14 +86,14 @@ function parseVesperNeonConfig(): IConfig {
 }
 
 function getWorkbenchFiles() {
-  const appDir = path.dirname(require.main?.filename!);
-  const base = appDir + "/vs/code";
-  const electronBase = isVSCodeBelowVersion("1.70.0")
-    ? "electron-browser"
-    : "electron-sandbox";
+  const appDir = path.dirname(vscode.env.appRoot);
+  const base = path.join(appDir, 'app', 'out', 'vs', 'code');
+  const electronBase = isVSCodeBelowVersion("1.70.0") ? "electron-browser" : "electron-sandbox";
+  const workBenchFilename = vscode.version == "1.94.0" ? "workbench.esm.html" : "workbench.html";
 
-  const htmlFile = base + "/" + electronBase + "/workbench/workbench.html";
-  const templateFile = base + "/" + electronBase + "/workbench/neondreams.js";
+  const htmlFile = path.join(base, electronBase, "workbench", workBenchFilename);
+  const templateFile = path.join(base, electronBase, "workbench", "neondreams.js");
+
 
   return { htmlFile, templateFile };
 }
@@ -130,6 +127,7 @@ function enableGlow(config: IConfig) {
 
     const html = fs.readFileSync(htmlFile, "utf-8");
     const isEnabled = html.includes("neondreams.js");
+    console.log(isEnabled)
     if (!isEnabled) {
       let output = html.replace(
         /^.*(<!-- vesper neon --><script src="neondreams.js"><\/script><!-- NEON DREAMS -->).*\n?/gm,

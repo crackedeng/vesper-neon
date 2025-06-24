@@ -1,8 +1,8 @@
 
 (function () {
   const tokenReplacements: { [key: string]: string } = {
-    ffc799:
-      "color: #f9efe9; text-shadow: 0 0 2px #171200, 0 0 3px #ff7c29[NEON_BRIGHTNESS], 0 0 5px #ff7c29[NEON_BRIGHTNESS], 0 0 8px #ff7c29[NEON_BRIGHTNESS];",
+    de92b8:
+      "color: #f9efe9; text-shadow: 0 0 2px #171200, 0 0 3px #ff46a2[NEON_BRIGHTNESS], 0 0 5px #ff46a2[NEON_BRIGHTNESS], 0 0 8px #ff46a2[NEON_BRIGHTNESS];",
   };
 
   const themeStylesExist = (
