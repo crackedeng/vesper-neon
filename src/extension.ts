@@ -10,6 +10,7 @@ interface IConfig {
 export function activate(context: vscode.ExtensionContext) {
   vscode.window.showInformationMessage("activating vesper neon");
   const config = parseVesperNeonConfig();
+  console.log(config)
   const disposable = vscode.commands.registerCommand(
     "vesper-neon.enableNeon",
     () => enableGlow(config)
@@ -49,19 +50,28 @@ export function uninstall() {
   }
 }
 
-function isVSCodeBelowVersion(version: string) {
-  const vscodeVersion = vscode.version;
-  const vscodeVersionArray = vscodeVersion.split(".");
-  const versionArray = version.split(".");
+function isVSCodeBelowVersion(version: any) {
+	const vscodeVersion = vscode.version;
+	const vscodeVersionArray = vscodeVersion.split('.').map(Number);
+	const versionArray = version.split('.').map(Number);
 
-  for (let i = 0; i < versionArray.length; i++) {
-    if (vscodeVersionArray[i] < versionArray[i]) {
-      return true;
-    }
-  }
+	const len = Math.max(vscodeVersionArray.length, versionArray.length);
+	
+	for (let i = 0; i < len; i++) {
+		const vscodePart = vscodeVersionArray[i] ?? 0;
+		const versionPart = versionArray[i] ?? 0;
 
-  return false;
+		if (vscodePart < versionPart) {
+			return true;
+		}
+		if (vscodePart > versionPart) {
+			return false;
+		}
+	}
+
+	return false;
 }
+
 
 function parseVesperNeonConfig(): IConfig {
   const config = vscode.workspace.getConfiguration("vesper-neon");
@@ -93,7 +103,6 @@ function getWorkbenchFiles() {
 
   const htmlFile = path.join(base, electronBase, "workbench", workBenchFilename);
   const templateFile = path.join(base, electronBase, "workbench", "neondreams.js");
-
 
   return { htmlFile, templateFile };
 }
@@ -127,7 +136,6 @@ function enableGlow(config: IConfig) {
 
     const html = fs.readFileSync(htmlFile, "utf-8");
     const isEnabled = html.includes("neondreams.js");
-    console.log(isEnabled)
     if (!isEnabled) {
       let output = html.replace(
         /^.*(<!-- vesper neon --><script src="neondreams.js"><\/script><!-- NEON DREAMS -->).*\n?/gm,
